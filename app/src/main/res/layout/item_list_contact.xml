@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/layout_item_listcontact_height">
+    <ImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_avt1"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/image.avatar_margin_left"/>
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imgAvatar"
+        android:text="David Beckham"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/textview.name_margin_left"
+        android:textSize="@dimen/textview.name_textsize"
+        android:textColor="@color/textview.name_contact"/>
+    <ImageView
+        android:id="@+id/imgEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_edit"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/imgDelete"
+        android:layout_marginRight="@dimen/image_edit_margin_right"/>
+    <ImageView
+        android:id="@+id/imgDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_delete"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/image_delete_margin_right"/>
+
+</RelativeLayout>
