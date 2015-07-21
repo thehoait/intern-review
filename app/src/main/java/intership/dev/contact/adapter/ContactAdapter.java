@@ -1,6 +1,9 @@
 package intership.dev.contact.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +32,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-        Contact itemContact=mContacts.get(position);
+        final Contact itemContact=mContacts.get(position);
         if(convertView==null){
             holder=new ViewHolder();
             convertView= LayoutInflater.from(mActivity).inflate(R.layout.item_list_contact,parent,false);
@@ -43,6 +46,28 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         }
         holder.imgAvatar.setImageResource(itemContact.getAvatar());
         holder.tvName.setText(itemContact.getName());
+        holder.imgDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final AlertDialog.Builder dialogDelete=new AlertDialog.Builder(mActivity);
+                dialogDelete.setMessage(Html.fromHtml("Are you want to delete <b> "+itemContact.getName()+"</b>"+"?"))
+                        .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                mContacts.remove(itemContact);
+                                notifyDataSetChanged();
+                                dialogInterface.cancel();
+                            }
+                        })
+                        .setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+                dialogDelete.show();
+            }
+        });
         return convertView;
     }
     static class ViewHolder{
