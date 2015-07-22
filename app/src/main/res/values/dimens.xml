@@ -11,4 +11,7 @@
     <dimen name="image_delete_margin_right">15dp</dimen>
     <dimen name="image_edit_margin_right">15dp</dimen>
     <dimen name="textview.name_textsize">15sp</dimen>
+    <dimen name="dialog_delete_layout_height">140dp</dimen>
+    <dimen name="message_dialog_delete_margin">10dp</dimen>
+    <dimen name="dialog_delete_button_layout_height">42dp</dimen>
 </resources>

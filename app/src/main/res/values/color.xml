@@ -3,4 +3,6 @@
     <color name="textview.title_contact">#fff</color>
     <color name="background.title_contact">#00bbd2</color>
     <color name="textview.name_contact">#000</color>
+    <color name="dialog.background">#ccffffff</color>
+    <color name="view.background">#1A000000</color>
 </resources>

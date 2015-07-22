@@ -2,12 +2,15 @@ package intership.dev.contact.adapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -49,23 +52,32 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         holder.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final AlertDialog.Builder dialogDelete=new AlertDialog.Builder(mActivity);
-                dialogDelete.setMessage(Html.fromHtml("Are you want to delete <b> "+itemContact.getName()+"</b>"+"?"))
-                        .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                mContacts.remove(itemContact);
-                                notifyDataSetChanged();
-                                dialogInterface.cancel();
-                            }
-                        })
-                        .setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.cancel();
-                            }
-                        });
-                dialogDelete.show();
+                final Dialog deleteDialog=new Dialog(mActivity,R.style.DialogDelete);
+                deleteDialog.setContentView(R.layout.dialog_delete_contact);
+                TextView tvMessenger = (TextView) deleteDialog.findViewById(R.id.tvMessenger);
+                tvMessenger.setText(Html.fromHtml("Are you sure you want to edit " + "<b>" +
+                        itemContact.getName() + "</b>" + "?"));
+                deleteDialog.show();
+
+                //Set event when click ok in dialog
+                Button btnOk = (Button) deleteDialog.findViewById(R.id.btnOk);
+                btnOk.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mContacts.remove(itemContact);
+                        deleteDialog.cancel();
+                    }
+                });
+
+                //Set event when click ok in dialog
+                Button btnCancel = (Button) deleteDialog.findViewById(R.id.btnCancel);
+                btnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        deleteDialog.cancel();
+                    }
+                });
+
             }
         });
         return convertView;
