@@ -1,9 +1,11 @@
 package intership.dev.contact.model;
 
+import java.io.Serializable;
+
 /**
  * Created by hoa on 7/21/15.
  */
-public class Contact {
+public class Contact implements Serializable{
     private String mName;
     private int mAvatar;
     private String mDescription;

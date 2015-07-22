@@ -1,6 +1,7 @@
 package intership.dev.contact;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -121,6 +122,17 @@ public class MainActivity extends Activity{
         protected void onCancelled() {
             // Notify the loading more operation has finished
             ((LoadMoreListView) lvContact).onLoadMoreComplete();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1&&resultCode==RESULT_OK){
+            Contact contact=(Contact) data.getSerializableExtra("contact");
+            int position=data.getIntExtra("position",-1);
+            mContacts.set(position,contact);
+            mContactAdapter.notifyDataSetChanged();
         }
     }
 

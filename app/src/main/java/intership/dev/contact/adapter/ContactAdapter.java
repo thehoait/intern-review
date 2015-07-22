@@ -2,6 +2,7 @@ package intership.dev.contact.adapter;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import intership.dev.contact.EditContactActivity;
 import intership.dev.contact.R;
 import intership.dev.contact.model.Contact;
 
@@ -30,7 +32,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         final Contact itemContact=mContacts.get(position);
         if(convertView==null){
@@ -49,7 +51,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         holder.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Dialog deleteDialog=new Dialog(mActivity,R.style.DialogDelete);
+                final Dialog deleteDialog = new Dialog(mActivity, R.style.DialogDelete);
                 deleteDialog.setContentView(R.layout.dialog_delete_contact);
                 TextView tvMessenger = (TextView) deleteDialog.findViewById(R.id.tvMessenger);
                 tvMessenger.setText(Html.fromHtml("Are you sure you want to edit " + "<b>" +
@@ -76,6 +78,15 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
                     }
                 });
 
+            }
+        });
+        holder.imgEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(mActivity, EditContactActivity.class);
+                intent.putExtra("contact",itemContact);
+                intent.putExtra("position",position);
+                mActivity.startActivityForResult(intent, 1);
             }
         });
         return convertView;
