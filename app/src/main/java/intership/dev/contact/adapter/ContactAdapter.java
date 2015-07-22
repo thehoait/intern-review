@@ -51,10 +51,10 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         holder.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Dialog deleteDialog = new Dialog(mActivity, R.style.DialogDelete);
-                deleteDialog.setContentView(R.layout.dialog_delete_contact);
+                final Dialog deleteDialog = new Dialog(mActivity, R.style.Dialog);
+                deleteDialog.setContentView(R.layout.dialog_list_contact);
                 TextView tvMessenger = (TextView) deleteDialog.findViewById(R.id.tvMessenger);
-                tvMessenger.setText(Html.fromHtml("Are you sure you want to edit " + "<b>" +
+                tvMessenger.setText(Html.fromHtml("Are you sure you want to delete " + "<b>" +
                         itemContact.getName() + "</b>" + "?"));
                 deleteDialog.show();
 
@@ -83,10 +83,35 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         holder.imgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(mActivity, EditContactActivity.class);
-                intent.putExtra("contact",itemContact);
-                intent.putExtra("position",position);
-                mActivity.startActivityForResult(intent, 1);
+                final Dialog editDialog = new Dialog(mActivity, R.style.Dialog);
+                editDialog.setContentView(R.layout.dialog_list_contact);
+                TextView tvMessenger = (TextView) editDialog.findViewById(R.id.tvMessenger);
+                tvMessenger.setText(Html.fromHtml("Are you sure you want to edit " + "<b>" +
+                        itemContact.getName() + "</b>" + "?"));
+                editDialog.show();
+
+                //Set event when click ok in dialog
+                Button btnOk = (Button) editDialog.findViewById(R.id.btnOk);
+                btnOk.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent=new Intent(mActivity, EditContactActivity.class);
+                        intent.putExtra("contact",itemContact);
+                        intent.putExtra("position", position);
+                        mActivity.startActivityForResult(intent, 1);
+                        editDialog.cancel();
+                    }
+                });
+
+                //Set event when click ok in dialog
+                Button btnCancel = (Button) editDialog.findViewById(R.id.btnCancel);
+                btnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editDialog.cancel();
+                    }
+                });
+
             }
         });
         return convertView;
