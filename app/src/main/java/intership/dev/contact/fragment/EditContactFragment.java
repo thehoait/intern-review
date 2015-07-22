@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import intership.dev.contact.R;
 import intership.dev.contact.model.Contact;
+import intership.dev.contact.widget.CircleImageView;
 
 /**
  * Created by hoa on 7/22/15.
@@ -27,7 +28,7 @@ public class EditContactFragment extends Fragment {
         final Intent intent=getActivity().getIntent();
         final Contact contact=(Contact) intent.getSerializableExtra("contact");
         final int position=intent.getIntExtra("position",-1);
-        ImageView imgAvatar=(ImageView) view.findViewById(R.id.imgAvatar);
+        CircleImageView imgAvatar=(CircleImageView) view.findViewById(R.id.imgAvatar);
         TextView tvName=(TextView) view.findViewById(R.id.tvName);
         final EditText edtName=(EditText) view.findViewById(R.id.edtName);
         final EditText edtDesc=(EditText) view.findViewById(R.id.edtDesc);

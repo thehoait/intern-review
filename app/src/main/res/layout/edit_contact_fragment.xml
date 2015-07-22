@@ -34,10 +34,10 @@
         android:layout_height="@dimen/username_layout_heght"
         android:layout_below="@+id/rlActibar">
 
-        <ImageView
+        <intership.dev.contact.widget.CircleImageView
             android:id="@+id/imgAvatar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/imageview.avatar_size"
+            android:layout_height="@dimen/imageview.avatar_size"
             android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
             android:layout_marginLeft="@dimen/image.avatar_margin_left"
@@ -114,16 +114,16 @@
             android:id="@+id/btnSave"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent"
+            android:background="@drawable/shape_background_dialog"
             android:text="Save"
             android:textAllCaps="false"
             android:textColor="@color/button.save.background"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
         <Button
             android:id="@+id/btnCancel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent"
+            android:background="@drawable/shape_background_dialog"
             android:text="Cancel"
             android:textAllCaps="false"
             android:textColor="@color/button.save.background"

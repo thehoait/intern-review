@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import intership.dev.contact.EditContactActivity;
 import intership.dev.contact.R;
 import intership.dev.contact.model.Contact;
+import intership.dev.contact.widget.CircleImageView;
 
 /**
  * Created by hoa on 7/21/15.
@@ -38,7 +39,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         if(convertView==null){
             holder=new ViewHolder();
             convertView= LayoutInflater.from(mActivity).inflate(R.layout.item_list_contact,parent,false);
-            holder.imgAvatar =(ImageView) convertView.findViewById(R.id.imgAvatar);
+            holder.imgAvatar =(CircleImageView) convertView.findViewById(R.id.imgAvatar);
             holder.tvName =(TextView) convertView.findViewById(R.id.tvName);
             holder.imgEdit =(ImageView) convertView.findViewById(R.id.imgEdit);
             holder.imgDelete =(ImageView) convertView.findViewById(R.id.imgDelete);
@@ -117,7 +118,8 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         return convertView;
     }
     static class ViewHolder{
-        ImageView imgAvatar, imgEdit, imgDelete;
+        ImageView imgEdit, imgDelete;
+        CircleImageView imgAvatar;
         TextView tvName;
     }
 }
