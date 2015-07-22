@@ -19,4 +19,7 @@
     <dimen name="username_layout_heght">126dp</dimen>
     <dimen name="description_layout_height">150dp</dimen>
     <dimen name="description_layout_margin_top">40dp</dimen>
+    <dimen name="progressbar.padding">3dp</dimen>
+    <dimen name="progressbar.width">36dp</dimen>
+    <dimen name="progressbar.height">36dp</dimen>
 </resources>

@@ -23,11 +23,11 @@
             android:layout_centerInParent="true"
             android:textColor="@color/textview.title_contact"/>
     </RelativeLayout>
-    <ListView
+    <intership.dev.contact.widget.LoadMoreListView
         android:id="@+id/lvContact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </ListView>
+    </intership.dev.contact.widget.LoadMoreListView>
 
 </LinearLayout>

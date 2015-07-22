@@ -1,15 +1,16 @@
 package intership.dev.contact;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 
 import intership.dev.contact.adapter.ContactAdapter;
 import intership.dev.contact.model.Contact;
+import intership.dev.contact.widget.LoadMoreListView;
 
 
 public class MainActivity extends Activity{
@@ -58,7 +59,7 @@ public class MainActivity extends Activity{
     };
     private ArrayList<Contact> mContacts;
     private ContactAdapter mContactAdapter;
-    private ListView lvContact;
+    private LoadMoreListView lvContact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +71,57 @@ public class MainActivity extends Activity{
             mContacts.add(contact);
         }
         mContactAdapter=new ContactAdapter(this,R.layout.item_list_contact,mContacts);
-        lvContact=(ListView) findViewById(R.id.lvContact);
+        lvContact=(LoadMoreListView) findViewById(R.id.lvContact);
         lvContact.setAdapter(mContactAdapter);
+        lvContact.setOnLoadMoreListener(new LoadMoreListView.OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                new LoadDataTask().execute();
+            }
+        });
+    }
+
+    private class LoadDataTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+            if (isCancelled()) {
+                return null;
+            }
+
+            // Simulates a background task
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+            }
+
+            // add Loadmore Item
+            for (int i = 0; i < NAMES.length; i++) {
+                Contact item = new Contact(NAMES[i], AVATARS[i], DESCRIPTIONS[i]);
+                mContacts.add(item);
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+
+            // We need notify the adapter that the data have been changed
+            mContactAdapter.notifyDataSetChanged();
+
+            // Call onLoadMoreComplete when the LoadMore task, has finished
+            ((LoadMoreListView) lvContact).onLoadMoreComplete();
+
+            super.onPostExecute(result);
+        }
+
+        @Override
+        protected void onCancelled() {
+            // Notify the loading more operation has finished
+            ((LoadMoreListView) lvContact).onLoadMoreComplete();
+        }
     }
 
     @Override
