@@ -5,4 +5,8 @@
     <color name="textview.name_contact">#000</color>
     <color name="dialog.background">#ccffffff</color>
     <color name="view.background">#1A000000</color>
+
+    <color name="view.fragment_edit_contact">#1A000000</color>
+    <color name="button.save.background">#FF595CFA</color>
+
 </resources>

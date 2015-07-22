@@ -1,10 +1,7 @@
 package intership.dev.contact.adapter;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,6 +62,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
                     @Override
                     public void onClick(View v) {
                         mContacts.remove(itemContact);
+                        notifyDataSetChanged();
                         deleteDialog.cancel();
                     }
                 });
