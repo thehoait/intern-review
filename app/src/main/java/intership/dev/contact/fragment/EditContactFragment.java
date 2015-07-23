@@ -34,6 +34,7 @@ public class EditContactFragment extends Fragment {
         final EditText edtDesc=(EditText) view.findViewById(R.id.edtDesc);
         Button btnSave=(Button) view.findViewById(R.id.btnSave);
         Button btnCancel=(Button) view.findViewById(R.id.btnCancel);
+        ImageView imgBack=(ImageView) view.findViewById(R.id.imgBack);
         imgAvatar.setImageResource(contact.getAvatar());
         tvName.setText(contact.getName());
         edtName.setText(contact.getName());
@@ -53,6 +54,12 @@ public class EditContactFragment extends Fragment {
                 intent.putExtra("contact", contact);
                 getActivity().setResult(Activity.RESULT_OK,intent);
                 getActivity().finish();
+            }
+        });
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
             }
         });
         return view;
