@@ -23,7 +23,7 @@
         android:id="@+id/imgEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_edit"
+        android:src="@drawable/button_edit_contact"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/imgDelete"
         android:layout_marginRight="@dimen/image_edit_margin_right"/>
@@ -31,7 +31,7 @@
         android:id="@+id/imgDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_delete"
+        android:src="@drawable/button_delete_contact"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/image_delete_margin_right"/>

@@ -34,7 +34,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+        final ViewHolder holder;
         final Contact itemContact=mContacts.get(position);
         if(convertView==null){
             holder=new ViewHolder();
@@ -52,6 +52,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         holder.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                holder.imgDelete.setSelected(true);
                 final Dialog deleteDialog = new Dialog(mActivity, R.style.Dialog);
                 deleteDialog.setContentView(R.layout.dialog_list_contact);
                 TextView tvMessenger = (TextView) deleteDialog.findViewById(R.id.tvMessenger);
@@ -67,6 +68,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
                         mContacts.remove(itemContact);
                         notifyDataSetChanged();
                         deleteDialog.cancel();
+                        holder.imgDelete.setSelected(false);
                     }
                 });
 
@@ -76,6 +78,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
                     @Override
                     public void onClick(View v) {
                         deleteDialog.cancel();
+                        holder.imgDelete.setSelected(false);
                     }
                 });
 
@@ -84,6 +87,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         holder.imgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                holder.imgEdit.setSelected(true);
                 final Dialog editDialog = new Dialog(mActivity, R.style.Dialog);
                 editDialog.setContentView(R.layout.dialog_list_contact);
                 TextView tvMessenger = (TextView) editDialog.findViewById(R.id.tvMessenger);
@@ -101,6 +105,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
                         intent.putExtra("position", position);
                         mActivity.startActivityForResult(intent, 1);
                         editDialog.cancel();
+                        holder.imgEdit.setSelected(false);
                     }
                 });
 
@@ -110,6 +115,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
                     @Override
                     public void onClick(View v) {
                         editDialog.cancel();
+                        holder.imgEdit.setSelected(false);
                     }
                 });
 
