@@ -1,7 +1,6 @@
 package intership.dev.contact.fragment;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,27 +21,27 @@ import intership.dev.contact.widget.CircleImageView;
  * Created by hoa on 7/22/15.
  */
 public class EditContactFragment extends Fragment implements View.OnClickListener {
-    Intent intent;
-    Contact contact;
-    int position;
-    CircleImageView imgAvatar;
-    TextView tvName;
-    EditText edtName,edtDesc;
-    Button btnSave,btnCancel;
-    ImageView imgBack;
+    private Intent mIntent;
+    private Contact mContact;
+    private int mPosition;
+    private CircleImageView imgAvatar;
+    private TextView tvName;
+    private EditText edtName,edtDesc;
+    private Button btnSave,btnCancel;
+    private ImageView imgBack;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.edit_contact_fragment,container,false);
         init(view);
-        intent=getActivity().getIntent();
-        contact=(Contact) intent.getSerializableExtra("contact");
-        position=intent.getIntExtra("position",-1);
+        mIntent =getActivity().getIntent();
+        mContact =(Contact) mIntent.getSerializableExtra("contact");
+        mPosition = mIntent.getIntExtra("position",-1);
 
-        imgAvatar.setImageResource(contact.getAvatar());
-        tvName.setText(contact.getName());
-        edtName.setText(contact.getName());
-        edtDesc.setText(contact.getDescription());
+        imgAvatar.setImageResource(mContact.getAvatar());
+        tvName.setText(mContact.getName());
+        edtName.setText(mContact.getName());
+        edtDesc.setText(mContact.getDescription());
 
         btnCancel.setOnClickListener(this);
         btnSave.setOnClickListener(this);
@@ -67,11 +66,11 @@ public class EditContactFragment extends Fragment implements View.OnClickListene
             getActivity().finish();
         }
         if(id==btnSave.getId()){
-            contact.setName(edtName.getText().toString());
-            contact.setDescription(edtDesc.getText().toString());
-            intent.putExtra("position",position);
-            intent.putExtra("contact", contact);
-            getActivity().setResult(Activity.RESULT_OK,intent);
+            mContact.setName(edtName.getText().toString());
+            mContact.setDescription(edtDesc.getText().toString());
+            mIntent.putExtra("position", mPosition);
+            mIntent.putExtra("contact", mContact);
+            getActivity().setResult(Activity.RESULT_OK, mIntent);
             getActivity().finish();
         }
         if(id==imgBack.getId()){

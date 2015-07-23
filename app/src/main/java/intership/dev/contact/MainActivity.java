@@ -15,7 +15,7 @@ import intership.dev.contact.widget.LoadMoreListView;
 
 
 public class MainActivity extends Activity{
-    public static final String[] NAMES={
+    private static final String[] NAMES={
             "Hugh Helbert",
             "Stevev Seo",
             "Dwight Pera",
@@ -35,7 +35,7 @@ public class MainActivity extends Activity{
             "Dario Bennington",
             "Fransico Chill"
     };
-    public static final int[] AVATARS={
+    private static final int[] AVATARS={
             R.drawable.ic_avt1,
             R.drawable.ic_avt2,
             R.drawable.ic_avt3,
@@ -55,7 +55,7 @@ public class MainActivity extends Activity{
             R.drawable.ic_avt1,
             R.drawable.ic_avt2,
     };
-    public static final String[] DESCRIPTIONS={"a", "b", "c", "d", "e", "f", "g", "h", "i", "k",
+    private static final String[] DESCRIPTIONS={"a", "b", "c", "d", "e", "f", "g", "h", "i", "k",
             "l", "m", "n", "o", "p", "q", "r", "s", "t"
     };
     private ArrayList<Contact> mContacts;
