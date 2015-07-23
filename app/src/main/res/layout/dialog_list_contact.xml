@@ -32,7 +32,7 @@
             android:background="@drawable/shape_background_dialog"
             android:text="@string/dialog.button_ok"
             android:textAllCaps="false"
-            android:textColor="@android:color/black" />
+            android:textColor="@color/text_button_dialog"/>
 
         <Button
             android:id="@+id/btnCancel"
@@ -42,7 +42,7 @@
             android:background="@drawable/shape_background_dialog"
             android:text="@string/dialog.button_cancel"
             android:textAllCaps="false"
-            android:textColor="@android:color/black" />
+            android:textColor="@color/text_button_dialog" />
 
     </LinearLayout>
 </RelativeLayout>

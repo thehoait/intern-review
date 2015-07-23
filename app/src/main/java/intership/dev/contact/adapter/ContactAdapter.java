@@ -2,6 +2,7 @@ package intership.dev.contact.adapter;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -68,7 +69,6 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
                         mContacts.remove(itemContact);
                         notifyDataSetChanged();
                         deleteDialog.cancel();
-                        holder.imgDelete.setSelected(false);
                     }
                 });
 
@@ -78,6 +78,11 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
                     @Override
                     public void onClick(View v) {
                         deleteDialog.cancel();
+                    }
+                });
+                deleteDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialogInterface) {
                         holder.imgDelete.setSelected(false);
                     }
                 });
@@ -105,7 +110,6 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
                         intent.putExtra("position", position);
                         mActivity.startActivityForResult(intent, 1);
                         editDialog.cancel();
-                        holder.imgEdit.setSelected(false);
                     }
                 });
 
@@ -115,6 +119,11 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
                     @Override
                     public void onClick(View v) {
                         editDialog.cancel();
+                    }
+                });
+                editDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialogInterface) {
                         holder.imgEdit.setSelected(false);
                     }
                 });

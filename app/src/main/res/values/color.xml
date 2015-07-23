@@ -7,6 +7,6 @@
     <color name="view.background">#1A000000</color>
 
     <color name="view.fragment_edit_contact">#1A000000</color>
-    <color name="button.save.background">#FF595CFA</color>
+    <color name="text_button_dialog">#51A9FF</color>
 
 </resources>
