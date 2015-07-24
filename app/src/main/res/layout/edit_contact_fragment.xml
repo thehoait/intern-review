@@ -4,35 +4,9 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:id="@+id/rlActibar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/layout_title_height"
-        android:background="@color/background.title_contact">
-
-        <ImageView
-            android:id="@+id/imgBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="@dimen/image_back_margin_left"
-            android:src="@drawable/ic_back" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/textview.title_edit_contact"
-            android:textColor="@color/textview.title_contact"
-            android:textSize="@dimen/title_contact_textsize" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
         android:id="@+id/rlUser"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/username_layout_heght"
-        android:layout_below="@+id/rlActibar">
+        android:layout_height="@dimen/username_layout_heght">
 
         <intership.dev.contact.widget.CircleImageView
             android:id="@+id/imgAvatar"

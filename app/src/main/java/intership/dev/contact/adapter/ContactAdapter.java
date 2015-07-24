@@ -3,7 +3,10 @@ package intership.dev.contact.adapter;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +18,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import intership.dev.contact.EditContactActivity;
 import intership.dev.contact.R;
+import intership.dev.contact.fragment.EditContactFragment;
 import intership.dev.contact.model.Contact;
 import intership.dev.contact.widget.CircleImageView;
 
@@ -105,10 +108,16 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
                 btnOk.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent=new Intent(mActivity, EditContactActivity.class);
-                        intent.putExtra("contact",itemContact);
-                        intent.putExtra("position", position);
-                        mActivity.startActivityForResult(intent, 1);
+                        FragmentManager mFragmentManager = ((FragmentActivity)mActivity).getSupportFragmentManager();
+                        FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
+                        EditContactFragment mEditContactFragment=new EditContactFragment();
+                        Bundle dataBundle = new Bundle();
+                        dataBundle.putSerializable("dataBundle", itemContact);
+
+                        mEditContactFragment.setArguments(dataBundle);
+                        mFragmentTransaction.replace(R.id.rlContainerFragment, mEditContactFragment);
+                        mFragmentTransaction.addToBackStack(null);
+                        mFragmentTransaction.commit();
                         editDialog.cancel();
                     }
                 });
