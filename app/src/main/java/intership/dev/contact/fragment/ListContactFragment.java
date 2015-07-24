@@ -85,6 +85,13 @@ public class ListContactFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setValue();
+    }
+
+    /**
+     * create database Contacts
+     */
+    private void setValue() {
         mContacts=new ArrayList<>();
         for(int i=0;i<NAMES.length;i++){
             Contact contact=new Contact(NAMES[i],AVATARS[i],DESCRIPTIONS[i]);
@@ -98,6 +105,9 @@ public class ListContactFragment extends Fragment {
         MainActivity.setTitle("Contacts");
     }
 
+    /**
+     * AsyncTask load more listview
+     */
     private class LoadDataTask extends AsyncTask<Void, Void, Void> {
 
         @Override

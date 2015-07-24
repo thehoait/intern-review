@@ -33,14 +33,21 @@ public class EditContactFragment extends Fragment implements View.OnClickListene
         Bundle dataBundle=this.getArguments();
         mContact =(Contact) dataBundle.getSerializable("dataBundle");
 
-        imgAvatar.setImageResource(mContact.getAvatar());
-        tvName.setText(mContact.getName());
-        edtName.setText(mContact.getName());
-        edtDesc.setText(mContact.getDescription());
+        setValue();
 
         btnCancel.setOnClickListener(this);
         btnSave.setOnClickListener(this);
         return view;
+    }
+
+    /**
+     * set values for layout edit contact
+     */
+    private void setValue() {
+        imgAvatar.setImageResource(mContact.getAvatar());
+        tvName.setText(mContact.getName());
+        edtName.setText(mContact.getName());
+        edtDesc.setText(mContact.getDescription());
     }
 
     @Override
@@ -71,9 +78,14 @@ public class EditContactFragment extends Fragment implements View.OnClickListene
             getActivity().onBackPressed();
         }
     }
+
+    /**
+     * interface update contacts when edit contact
+     */
     public interface OnChangeItemListener{
         void onChange();
     }
+
     public void setOnChangeItemListener(OnChangeItemListener listener){
         mListenerOnChange=listener;
     }

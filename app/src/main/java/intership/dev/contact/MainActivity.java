@@ -28,6 +28,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     }
 
+    /**
+     * add fragment ListContactFragment in MainActivity
+     */
     private void addListContactFragment() {
         rlContainerFragment = (RelativeLayout) findViewById(R.id.rlContainerFragment);
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -37,11 +40,19 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         transaction.commit();
     }
 
+    /**
+     * event imgBack
+     * @param view
+     */
     @Override
     public void onClick(View view) {
         onBackPressed();
     }
 
+    /**
+     * set title fragment
+     * @param title of fragment
+     */
     public static void setTitle(String title){
         tvTitle.setText(title);
     }
