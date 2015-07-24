@@ -23,13 +23,11 @@ public class EditContactFragment extends Fragment implements View.OnClickListene
     private TextView tvName,tvTitle;
     private EditText edtName,edtDesc;
     private Button btnSave,btnCancel;
+    private OnChangeItemListener mListenerOnChange;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.edit_contact_fragment, container, false);
-        View headerView=inflater.inflate(R.layout.activity_main,null);
-        tvTitle=(TextView) headerView.findViewById(R.id.tvTitle);
-        tvTitle.setText("Contact");
         init(view);
         Bundle dataBundle=this.getArguments();
         mContact =(Contact) dataBundle.getSerializable("dataBundle");
@@ -62,7 +60,14 @@ public class EditContactFragment extends Fragment implements View.OnClickListene
         if(id==btnSave.getId()){
             mContact.setName(edtName.getText().toString());
             mContact.setDescription(edtDesc.getText().toString());
+            mListenerOnChange.onChange();
             getActivity().onBackPressed();
         }
+    }
+    public interface OnChangeItemListener{
+        void onChange();
+    }
+    public void setOnChangeItemListener(OnChangeItemListener listener){
+        mListenerOnChange=listener;
     }
 }

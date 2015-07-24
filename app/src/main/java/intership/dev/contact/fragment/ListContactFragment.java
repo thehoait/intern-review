@@ -69,11 +69,6 @@ public class ListContactFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_list_contact,container,false);
-        mContacts=new ArrayList<>();
-        for(int i=0;i<NAMES.length;i++){
-            Contact contact=new Contact(NAMES[i],AVATARS[i],DESCRIPTIONS[i]);
-            mContacts.add(contact);
-        }
         mContactAdapter=new ContactAdapter(getActivity(),R.layout.item_list_contact,mContacts);
         lvContact=(LoadMoreListView) view.findViewById(R.id.lvContact);
         lvContact.setAdapter(mContactAdapter);
@@ -85,6 +80,17 @@ public class ListContactFragment extends Fragment {
         });
         return view;
     }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mContacts=new ArrayList<>();
+        for(int i=0;i<NAMES.length;i++){
+            Contact contact=new Contact(NAMES[i],AVATARS[i],DESCRIPTIONS[i]);
+            mContacts.add(contact);
+        }
+    }
+
     private class LoadDataTask extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -116,7 +122,7 @@ public class ListContactFragment extends Fragment {
             mContactAdapter.notifyDataSetChanged();
 
             // Call onLoadMoreComplete when the LoadMore task, has finished
-            ((LoadMoreListView) lvContact).onLoadMoreComplete();
+            lvContact.onLoadMoreComplete();
 
             super.onPostExecute(result);
         }
@@ -124,7 +130,7 @@ public class ListContactFragment extends Fragment {
         @Override
         protected void onCancelled() {
             // Notify the loading more operation has finished
-            ((LoadMoreListView) lvContact).onLoadMoreComplete();
+            lvContact.onLoadMoreComplete();
         }
     }
 }

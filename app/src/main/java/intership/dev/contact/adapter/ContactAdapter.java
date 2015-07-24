@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,7 @@ import intership.dev.contact.widget.CircleImageView;
 /**
  * Created by hoa on 7/21/15.
  */
-public class ContactAdapter extends ArrayAdapter<Contact> {
+public class ContactAdapter extends ArrayAdapter<Contact> implements EditContactFragment.OnChangeItemListener{
     private ArrayList<Contact> mContacts;
     private Activity mActivity;
 
@@ -111,6 +112,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
                         FragmentManager mFragmentManager = ((FragmentActivity)mActivity).getSupportFragmentManager();
                         FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
                         EditContactFragment mEditContactFragment=new EditContactFragment();
+                        mEditContactFragment.setOnChangeItemListener(ContactAdapter.this);
                         Bundle dataBundle = new Bundle();
                         dataBundle.putSerializable("dataBundle", itemContact);
 
@@ -145,5 +147,10 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         ImageView imgEdit, imgDelete;
         CircleImageView imgAvatar;
         TextView tvName;
+    }
+
+    @Override
+    public void onChange() {
+        notifyDataSetChanged();
     }
 }
