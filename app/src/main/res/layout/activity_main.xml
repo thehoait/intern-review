@@ -16,9 +16,9 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/image_back_margin_left"/>
         <TextView
+            android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/textview.title_contact"
             android:textSize="@dimen/title_contact_textsize"
             android:layout_centerInParent="true"
             android:textColor="@color/textview.title_contact"/>

@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import intership.dev.contact.MainActivity;
 import intership.dev.contact.R;
 import intership.dev.contact.model.Contact;
 import intership.dev.contact.widget.CircleImageView;
@@ -40,6 +41,12 @@ public class EditContactFragment extends Fragment implements View.OnClickListene
         btnCancel.setOnClickListener(this);
         btnSave.setOnClickListener(this);
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MainActivity.setTitle("Contact");
     }
 
     void init(View view) {

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import intership.dev.contact.MainActivity;
 import intership.dev.contact.R;
 import intership.dev.contact.adapter.ContactAdapter;
 import intership.dev.contact.model.Contact;
@@ -89,6 +90,12 @@ public class ListContactFragment extends Fragment {
             Contact contact=new Contact(NAMES[i],AVATARS[i],DESCRIPTIONS[i]);
             mContacts.add(contact);
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MainActivity.setTitle("Contacts");
     }
 
     private class LoadDataTask extends AsyncTask<Void, Void, Void> {
